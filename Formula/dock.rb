@@ -3,8 +3,8 @@ class Dock < Formula
 
   desc "macOS Dock Manager (YAML-driven, dry-run friendly)"
   homepage "https://github.com/jamessawle/dock"
-  url "https://github.com/jamessawle/dock/archive/refs/tags/v0.2.0.tar.gz"
-  sha256 "16737ee59876b54167ed722d8bfdcaf91208db5568fc52d19f9f53371255b1ab"
+  url "https://github.com/jamessawle/dock/archive/refs/tags/v0.2.2.tar.gz"
+  sha256 "74d3a53661f736d4355480217d084fb663aee09faee7c18ed71ddf6d46537eff"
   license "MIT"
   head "https://github.com/jamessawle/dock.git", branch: "main"
 
@@ -46,9 +46,26 @@ class Dock < Formula
   def install
     virtualenv_install_with_resources
 
-    # Install shell completions
-    bash_completion.install "completions/dock.bash" => "dock"
-    zsh_completion.install "completions/_dock"
+    # Generate shell completions using Click
+    # Click requires environment variables to generate completions
+    # We need to create wrapper scripts that set the env var
+    (buildpath/"generate-bash-completion.sh").write <<~EOS
+      #!/bin/bash
+      _DOCK_COMPLETE=bash_source #{bin}/dock
+    EOS
+
+    (buildpath/"generate-zsh-completion.sh").write <<~EOS
+      #!/bin/zsh
+      _DOCK_COMPLETE=zsh_source #{bin}/dock
+    EOS
+
+    chmod 0755, buildpath/"generate-bash-completion.sh"
+    chmod 0755, buildpath/"generate-zsh-completion.sh"
+
+    generate_completions_from_executable(buildpath/"generate-bash-completion.sh",
+                                         shells: [:bash], base_name: "dock")
+    generate_completions_from_executable(buildpath/"generate-zsh-completion.sh",
+                                         shells: [:zsh], base_name: "dock")
   end
 
   test do
@@ -67,5 +84,13 @@ class Dock < Formula
     EOS
 
     assert_match "valid", shell_output("#{bin}/dock validate --file #{testpath}/test-config.yml")
+
+    # Test that shell completions were installed
+    assert_path_exists bash_completion/"dock"
+    assert_path_exists zsh_completion/"_dock"
+
+    # Test that completions contain expected content
+    assert_match "dock", (bash_completion/"dock").read
+    assert_match "dock", (zsh_completion/"_dock").read
   end
 end
