@@ -1,7 +1,7 @@
 class Dock < Formula
   include Language::Python::Virtualenv
 
-  desc "Manage macOS Dock from YAML configuration"
+  desc "macOS Dock Manager (YAML-driven, dry-run friendly)"
   homepage "https://github.com/jamessawle/dock"
   url "https://github.com/jamessawle/dock/archive/refs/tags/v0.2.0.tar.gz"
   sha256 "16737ee59876b54167ed722d8bfdcaf91208db5568fc52d19f9f53371255b1ab"
@@ -10,6 +10,7 @@ class Dock < Formula
 
   depends_on "dockutil"
   depends_on "libyaml"
+  depends_on :macos
   depends_on "python@3.14"
 
   resource "attrs" do
