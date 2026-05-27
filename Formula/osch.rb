@@ -5,21 +5,21 @@
 class Osch < Formula
   desc "CLI for managing OpenSpec schemas across repos"
   homepage "https://github.com/jamessawle/osch"
-  version "0.0.1"
+  version "0.0.2"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/jamessawle/osch/releases/download/v0.0.1/osch_0.0.1_darwin_amd64.tar.gz"
-      sha256 "321d5d71bfa91a4e6735caeec4e5b076066d5507ac370d7f7ea177863a87fa9b"
+      url "https://github.com/jamessawle/osch/releases/download/v0.0.2/osch_0.0.2_darwin_amd64.tar.gz"
+      sha256 "1b3c2012c25e28d7ea2dafd9970516e00c34f5072634248b09af8aa46ccd323c"
 
       define_method(:install) do
         bin.install "osch"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/jamessawle/osch/releases/download/v0.0.1/osch_0.0.1_darwin_arm64.tar.gz"
-      sha256 "712b9b79e7ccdc5fc769225056d2d8aa05eda44ef75f7b4f38fcbbdd6091f871"
+      url "https://github.com/jamessawle/osch/releases/download/v0.0.2/osch_0.0.2_darwin_arm64.tar.gz"
+      sha256 "7689837c0a0ebec66e5528ccef3ce5dbf6c93790fb951487dd07f08a7cc6f885"
 
       define_method(:install) do
         bin.install "osch"
@@ -29,15 +29,15 @@ class Osch < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/jamessawle/osch/releases/download/v0.0.1/osch_0.0.1_linux_amd64.tar.gz"
-      sha256 "15c8d370866415fa441cb466b3b5b9c0128cf41547bcc4158e7a35cd8682a57f"
+      url "https://github.com/jamessawle/osch/releases/download/v0.0.2/osch_0.0.2_linux_amd64.tar.gz"
+      sha256 "f61ea5ba6df9c3a060ce120b36dcb2f0c209a76f730a2820cedff54b43e3f3ef"
       define_method(:install) do
         bin.install "osch"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/jamessawle/osch/releases/download/v0.0.1/osch_0.0.1_linux_arm64.tar.gz"
-      sha256 "87b7f018001a2b50de085b6870c2805854afef4104b16b52a1484a82404b7a6b"
+      url "https://github.com/jamessawle/osch/releases/download/v0.0.2/osch_0.0.2_linux_arm64.tar.gz"
+      sha256 "9a8a8105d1a3283ff4fa8b03f072b9832a31f8cf50e7c511ca09420219bdfdec"
       define_method(:install) do
         bin.install "osch"
       end
