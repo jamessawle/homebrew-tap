@@ -45,6 +45,6 @@ class Osch < Formula
   end
 
   test do
-    system "#{bin}/osch", "version"
+    system bin/"osch", "version"
   end
 end
