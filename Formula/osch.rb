@@ -5,7 +5,6 @@
 class Osch < Formula
   desc "CLI for managing OpenSpec schemas across repos"
   homepage "https://github.com/jamessawle/osch"
-  version "0.1.3"
   license "MIT"
 
   on_macos do
