@@ -1,0 +1,19 @@
+Formula/hook-bridge-runner.rb
+  s_ec61d3ca85b204::t_a8f27eda611362 1-20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.13",
+  "base_commit_sha": "e47676062db2992cb9a241fdace72fdbdd5e0bc4",
+  "prompts": {},
+  "sessions": {
+    "s_ec61d3ca85b204": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a90797d5-e073-4788-8c33-9bc0e58d5f35",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "James Sawle <jamessawle@hotmail.com>"
+    }
+  }
+}
